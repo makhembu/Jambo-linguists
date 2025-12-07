@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Wallet, Clock, CalendarCheck, TrendingUp } from 'lucide-react';
-import { FinanceStats as FinanceStatsType } from '../../../../data/types';
+import { FinanceStats as FinanceStatsType } from '@/data/types';
 import { IconBox } from '../../../ui/IconBox';
 
 interface FinanceStatsProps {

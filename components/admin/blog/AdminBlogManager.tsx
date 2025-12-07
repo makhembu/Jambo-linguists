@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { BlogPost } from '../../../data/types';
-import { mockDb } from '../../../data/mockDatabase';
+import { BlogPost } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Plus, Search, Edit2, Trash2, Eye, Calendar } from 'lucide-react';
 import { Button } from '../../ui/Button';
 import { Input } from '../../ui/Input';

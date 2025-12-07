@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { AlertCircle, FileText, Clock, Download, FileCheck, ArrowRight } from 'lucide-react';
-import { Job } from '../../../../../data/types';
+import { Job } from '@/data/types';
 
 export const RevisionTab = ({ job }: { job: Job }) => {
     // Show all events involved in the revision loop: REVISION_REQUESTED, SUBMITTED, RESUBMITTED

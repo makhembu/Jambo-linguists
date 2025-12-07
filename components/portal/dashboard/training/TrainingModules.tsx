@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { TrainingFilterBar } from './components/TrainingFilterBar';
 import { CourseCard } from './components/CourseCard';
 import { CourseListItem } from './components/CourseListItem';

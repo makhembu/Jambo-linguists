@@ -1,5 +1,5 @@
 
-import { Invoice, User } from "../../../../data/mockDatabase";
+import { Invoice, User } from "@/data/mockDatabase";
 import { InvoicePDF } from "./pdf/InvoicePDF";
 import { StatementPDF } from "./pdf/StatementPDF";
 

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Shield, Ban } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 
 export const StatusBanners = ({ user }: { user: User }) => {
   return (

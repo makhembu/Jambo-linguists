@@ -1,8 +1,12 @@
+'use client'
 
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Lock } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
-export const Footer = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
+export const Footer = () => {
+  const router = useRouter();
+
   return (
     <footer className="bg-jambo-600 dark:bg-black/30 pt-20 pb-10 px-6 text-white border-t border-white/5 backdrop-blur-sm transition-colors duration-300">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -30,8 +34,8 @@ export const Footer = ({ onNavigate }: { onNavigate: (page: string) => void }) =
           </div>
         </div>
 
-         {/* Column 3 */}
-         <div>
+        {/* Column 3 */}
+        <div>
           <h4 className="text-white font-bold mb-6 text-lg border-b border-white/20 pb-2 inline-block">Social</h4>
           <div className="flex gap-4">
             {[Facebook, Instagram, Linkedin].map((Icon, i) => (
@@ -50,7 +54,7 @@ export const Footer = ({ onNavigate }: { onNavigate: (page: string) => void }) =
             <div className="bg-white p-2 rounded-full h-14 w-14 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
                 <div className="text-[10px] text-jambo-600 font-bold leading-none text-center">AITI</div>
             </div>
-             <div className="bg-white px-3 py-1 rounded h-10 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+            <div className="bg-white px-3 py-1 rounded h-10 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
                 <div className="text-[10px] text-gray-800 font-bold uppercase">
                     <span className="bg-gray-800 text-white px-1 mr-1">CIOL</span>Associate
                 </div>
@@ -64,7 +68,7 @@ export const Footer = ({ onNavigate }: { onNavigate: (page: string) => void }) =
         <div className="flex gap-6 mt-4 md:mt-0 items-center">
           <a href="#" className="hover:text-white transition-colors underline decoration-white/30 hover:decoration-white cursor-pointer">Privacy & Cookie Policy</a>
           <button 
-            onClick={() => onNavigate('admin')} 
+            onClick={() => router.push('/admin')} 
             className="flex items-center gap-1 hover:text-white transition-colors opacity-70 hover:opacity-100"
           >
             <Lock size={10} /> Staff Login

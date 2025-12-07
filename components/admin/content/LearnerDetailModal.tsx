@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { Modal } from '../../ui/Modal';
-import { User, CourseProgress, Course, QuizResult, EnrichedCourse } from '../../../data/types';
-import { mockDb } from '../../../data/mockDatabase';
+import { User, CourseProgress, Course, QuizResult, EnrichedCourse } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { X, Calendar, Clock, CheckCircle, Award, Ban, FileText, BarChart2, Download, Loader2 } from 'lucide-react';
 import { Badge } from '../../ui/Badge';
 import { Button } from '../../ui/Button';

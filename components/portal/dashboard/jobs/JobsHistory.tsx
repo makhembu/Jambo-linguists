@@ -6,7 +6,7 @@ import { JobDetailsModal } from './JobDetailsModal';
 import { JobFilters, FiltersState } from './JobFilters';
 import { Pagination } from './Pagination';
 import { History } from 'lucide-react';
-import { mockDb, Job } from '../../../../data/mockDatabase';
+import { mockDb, Job } from '@/data/mockDatabase';
 import { ToastType } from '../Toast';
 
 const ITEMS_PER_PAGE = 6;

@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { Quote, Loader2, Play } from 'lucide-react';

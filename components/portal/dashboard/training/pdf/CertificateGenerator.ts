@@ -1,6 +1,6 @@
 
 import { jsPDF } from 'jspdf';
-import { EnrichedCourse, User } from '../../../../../data/types';
+import { EnrichedCourse, User } from '@/data/types';
 import { CertificateTemplate } from './CertificateTemplate';
 import { CertificateContent } from './CertificateContent';
 import { getCompanyLogo } from './PDFConfig';

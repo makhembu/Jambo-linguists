@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { Calendar, MapPin, PoundSterling, Lock, FileText, Download, ExternalLink } from 'lucide-react';
-import { Job } from '../../../../data/types';
+import { Job } from '@/data/types';
 import { JobStatusBadge } from '../../../ui/JobStatusBadge';
 import { LinguistSelector } from './LinguistSelector';
-import { User } from '../../../../data/types';
+import { User } from '@/data/types';
 
 interface JobOverviewProps {
   job: Job;

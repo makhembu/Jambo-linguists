@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Message, User, Job } from '../../data/types';
+import { Message, User, Job } from '@/data/types';
 import { MessageBubble } from './MessageBubble';
 import { Send, ArrowLeft, MoreVertical, Briefcase, ExternalLink, Calendar } from 'lucide-react';
-import { mockDb } from '../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface MessageThreadProps {
   currentUserId: string;

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Briefcase, Calendar, FileText, PoundSterling, Save } from 'lucide-react';
-import { Job } from '../../../../../data/types';
+import { Job } from '@/data/types';
 import { calculateJobPayout } from '../../../portal/dashboard/jobs/job-helpers';
 import { Button } from '../../../ui/Button';
 import { Fieldset } from '../add-job/Fieldset';

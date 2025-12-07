@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { LogIn, CheckCircle, Ban } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 
 interface ActionButtonsProps {
   user: User;

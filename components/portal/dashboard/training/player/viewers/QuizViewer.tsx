@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Lesson } from '../../../../../../data/types';
+import { Lesson } from '@/data/types';
 import { CheckCircle, XCircle, RefreshCw, ChevronRight, HelpCircle } from 'lucide-react';
 
 export const QuizViewer = ({ lesson, onQuizComplete }: { lesson: Lesson; onQuizComplete: () => void; }) => {

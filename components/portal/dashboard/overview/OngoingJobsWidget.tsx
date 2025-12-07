@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Calendar, MapPin, Clock, ChevronRight, Briefcase, Loader2, AlertCircle } from 'lucide-react';
-import { Job } from '../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 import { IconBox, IconBoxVariant } from '../../../ui/IconBox';
 
 interface OngoingJobsWidgetProps {

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Invoice } from '../../../../data/types';
+import { Invoice } from '@/data/types';
 import { PoundSterling, Clock, AlertCircle, CheckCircle, FileText } from 'lucide-react';
 
 interface AdminFinanceStatsProps {

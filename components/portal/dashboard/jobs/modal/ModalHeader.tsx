@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { X, ChevronLeft, AlertCircle, Clock } from 'lucide-react';
-import { Job } from '../../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 import { JobStatusBadge } from '../../../../ui/JobStatusBadge';
 
 interface ModalHeaderProps {

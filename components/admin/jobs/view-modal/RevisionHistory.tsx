@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { AlertCircle, FileText, History, Download, CheckCircle, Clock } from 'lucide-react';
-import { Job, JobHistoryEvent } from '../../../../data/types';
+import { Job, JobHistoryEvent } from '@/data/types';
 
 interface RevisionHistoryProps {
     job: Job;

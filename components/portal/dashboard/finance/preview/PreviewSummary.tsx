@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Invoice } from '../../../../../data/types';
+import { Invoice } from '@/data/types';
 
 export const PreviewSummary = ({ invoice }: { invoice: Invoice }) => {
   const hasVat = invoice.vatRate && invoice.vatRate > 0;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { UserCheck, ShieldAlert, CheckCircle } from 'lucide-react';
-import { mockDb } from '../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 export const LiveOperationsFeed = () => {
   const users = mockDb.getAllUsers().slice(0, 5); // Get recent 5

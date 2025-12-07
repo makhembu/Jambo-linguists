@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Lesson } from '../../../../../../data/types';
+import { Lesson } from '@/data/types';
 import { Download, ExternalLink, FileText, AlertTriangle, Maximize2 } from 'lucide-react';
 
 export const DocumentViewer = ({ lesson }: { lesson: Lesson }) => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lesson } from '../../../../../../data/types';
+import { Lesson } from '@/data/types';
 
 export const VideoViewer = ({ lesson }: { lesson: Lesson }) => {
   const [activeTab, setActiveTab] = useState('overview');

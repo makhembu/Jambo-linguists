@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Clock, MapPin, Calendar as CalendarIcon, Briefcase, User, Users, Filter, X } from 'lucide-react';
-import { mockDb, Job } from '../../../../data/mockDatabase';
+import { mockDb, Job } from '@/data/mockDatabase';
 import { AdminJobModal } from './AdminJobModal';
 import { Toast, ToastType } from '../../portal/dashboard/Toast';
 import { Badge } from '../../ui/Badge';

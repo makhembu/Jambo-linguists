@@ -1,4 +1,4 @@
-import { Job } from '../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 
 /**
  * Calculates the total estimated payout for an interpreting job based on its detailed rates.

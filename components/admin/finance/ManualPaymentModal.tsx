@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { X, Plus, Download, Save, AlertTriangle } from 'lucide-react';
-import { mockDb, Invoice } from '../../../data/mockDatabase';
+import { mockDb, Invoice } from '@/data/mockDatabase';
 import { generateInvoicePDF } from '../../portal/dashboard/finance/pdfGenerator';
 import { RecipientSection } from './manual-payment/RecipientSection';
 import { LineItemsSection, LineItem } from './manual-payment/LineItemsSection';

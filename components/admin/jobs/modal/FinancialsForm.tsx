@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { PoundSterling, Navigation, Briefcase } from 'lucide-react';
-import { Job } from '../../../../data/types';
+import { Job } from '@/data/types';
 import { calculateJobPayout } from '../../../portal/dashboard/jobs/job-helpers';
 
 interface FinancialsFormProps {

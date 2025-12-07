@@ -1,7 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { TrendingUp, TrendingDown } from 'lucide-react';
-import { Job } from '../../../../data/types';
+import { Job } from '@/data/types';
 
 export const FinancialOverview = ({ jobs }: { jobs: Job[] }) => {
   // Calculate data for the last 6 months based on COMPLETED jobs

@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
 import { Bell, Briefcase, Mail, BookOpen } from 'lucide-react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { Switch } from '../../../../components/ui/Switch';
-import { NotificationPreferences } from '../../../../data/types';
+import { NotificationPreferences } from '@/data/types';
 
 export const ProfileSettings = () => {
   const user = mockDb.auth.getCurrentUser();

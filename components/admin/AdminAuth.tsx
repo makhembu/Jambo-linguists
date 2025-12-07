@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { AlertCircle, Lock } from 'lucide-react';
 import { AuthForm } from '../portal/auth/AuthForm';
-import { mockDb } from '../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface AdminAuthProps {
   onLoginSuccess: () => void;

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { User as UserType } from '../../../data/types';
-import { mockDb } from '../../../data/mockDatabase';
+import { User as UserType } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { X, Briefcase, Wallet, User, History } from 'lucide-react';
 import { Modal } from '../../ui/Modal';
 
@@ -21,8 +21,9 @@ interface UserProfileModalProps {
   user: UserType;
   onClose: () => void;
   onUpdate: () => void;
-  onNavigate: (page: string) => void;
+  onNavigate?: (page: string) => void;  // now optional
 }
+
 
 export const UserProfileModal = ({ user, onClose, onUpdate, onNavigate }: UserProfileModalProps) => {
   const [processing, setProcessing] = useState(false);
@@ -72,12 +73,12 @@ export const UserProfileModal = ({ user, onClose, onUpdate, onNavigate }: UserPr
       }
 
       const res = mockDb.auth.login(user.email);
-      if (res.success) {
-          onClose();
-          onNavigate('portal');
-      } else {
-          alert('Failed to login as user. Ensure the email is valid.');
-      }
+  if (res.success) {
+    onClose();
+    onNavigate?.('portal');   // safe call
+  } else {
+    alert('Failed to login as user. Ensure the email is valid.');
+  }
   };
 
   const handleSave = () => {

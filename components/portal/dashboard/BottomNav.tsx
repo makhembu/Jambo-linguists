@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { LayoutDashboard, Briefcase, MessageSquare, Wallet, User, LogOut } from 'lucide-react';
-import { mockDb } from '../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface BottomNavProps {
   activeSection: string;

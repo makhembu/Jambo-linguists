@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Loader2, CheckCircle, Edit, User as UserIcon } from 'lucide-react';
-import { Invoice, User } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { Invoice, User } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { generateInvoicePDF } from './pdfGenerator';
 import { PreviewHeader } from './preview/PreviewHeader';
 import { PreviewItems } from './preview/PreviewItems';

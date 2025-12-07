@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../ui/Table';
 import { Badge } from '../../../ui/Badge';
 import { RefreshCw } from 'lucide-react';

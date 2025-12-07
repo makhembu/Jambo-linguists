@@ -1,8 +1,8 @@
 
 import React, { useMemo, useState } from 'react';
 import { CheckCircle, Phone, Printer, Send, Lock, Loader2, XCircle, RotateCcw, LogOut } from 'lucide-react';
-import { mockDb } from '../../../../../data/mockDatabase';
-import { Job, Invoice } from '../../../../../data/types';
+import { mockDb } from '@/data/mockDatabase';
+import { Job, Invoice } from '@/data/types';
 import { generateInvoicePDF } from '../../finance/pdfGenerator';
 import { calculateJobPayout } from '../job-helpers';
 

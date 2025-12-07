@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { X, UserPlus, Mail, User, MapPin, Briefcase, Globe, Loader2, Award, CreditCard, Shield, Image as ImageIcon } from 'lucide-react';
-import { mockDb, UserRole } from '../../../data/mockDatabase';
+import { mockDb, UserRole } from '@/data/mockDatabase';
 import { Modal } from '../../ui/Modal';
 import { Fieldset } from '../jobs/add-job/Fieldset';
 import { ImageUploadField } from './add-user/ImageUploadField';

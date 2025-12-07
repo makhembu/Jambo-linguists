@@ -4,8 +4,8 @@ import {
   LayoutDashboard, Briefcase, GraduationCap, PoundSterling, User, 
   LogOut, ChevronRight, MessageSquare, Book, Calendar, List
 } from 'lucide-react';
-import { mockDb } from '../../../data/mockDatabase';
-import { COMPANY_INFO } from '../../../data/constants';
+import { mockDb } from '@/data/mockDatabase';
+import { COMPANY_INFO } from '@/data/constants';
 
 interface MenuItem {
   id: string;

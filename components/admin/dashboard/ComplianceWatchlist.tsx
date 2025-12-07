@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ShieldAlert, Mail, CheckCircle, AlertTriangle } from 'lucide-react';
-import { User } from '../../../../data/types';
+import { User } from '@/data/types';
 
 export const ComplianceWatchlist = ({ users }: { users: User[] }) => {
   const pendingUsers = users.filter(u => !u.isVerified && !u.isSuspended);

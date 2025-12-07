@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { QuizQuestion } from '../../../../data/types';
+import { QuizQuestion } from '@/data/types';
 import { Plus, Trash2, CheckCircle, Circle } from 'lucide-react';
 
 interface QuizBuilderProps {

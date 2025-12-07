@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { BlogPost } from '../../data/types';
-import { mockDb } from '../../data/mockDatabase';
+import { BlogPost } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Calendar, User, ArrowLeft, Share2, Tag, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { BlogCard } from './BlogCard';
 import { SeoHead } from '../seo/SeoHead';
-import { COMPANY_INFO } from '../../data/constants';
+import { COMPANY_INFO } from '@/data/constants';
 
 interface BlogPostViewProps {
   post: BlogPost;

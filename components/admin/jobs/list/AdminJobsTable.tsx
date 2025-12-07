@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Job, Invoice } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { Job, Invoice } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Star, AlertCircle } from 'lucide-react';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../ui/Table';
 import { Badge } from '../../../ui/Badge';

@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 import { SeoConfig, GlobalSeoSettings } from "../types";
 
@@ -10,14 +9,39 @@ export interface ContentAnalysis {
 }
 
 export class AiWritingService {
-    private ai: GoogleGenAI;
+    private ai: GoogleGenAI | null = null;
     private model = 'gemini-2.5-flash';
+    private isEnabled: boolean = false;
 
     constructor() {
-        this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        // Only initialize if API key is available
+        const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+        
+        if (apiKey) {
+            try {
+                this.ai = new GoogleGenAI({ apiKey });
+                this.isEnabled = true;
+                console.log('✅ AI Service enabled');
+            } catch (error) {
+                console.warn('⚠️ AI Service initialization failed:', error);
+                this.isEnabled = false;
+            }
+        } else {
+            console.log('ℹ️ AI Service disabled: No API key found (this is OK for development)');
+            this.isEnabled = false;
+        }
     }
 
     async generateSeoData(content: string, title: string): Promise<Partial<SeoConfig>> {
+        // Return mock data if AI is not enabled
+        if (!this.isEnabled || !this.ai) {
+            return {
+                metaTitle: title.substring(0, 60),
+                metaDescription: content.substring(0, 160),
+                keywords: ['jambo', 'linguists', 'swahili', 'translation', 'interpretation']
+            };
+        }
+
         const prompt = `
             Act as an SEO expert for "Jambo Linguists", a premium Swahili interpretation agency.
             Analyze the following blog content and title.
@@ -45,10 +69,31 @@ export class AiWritingService {
         } catch (error) {
             console.error("AI SEO Generation Failed:", error);
         }
-        return {};
+        
+        // Fallback to mock data
+        return {
+            metaTitle: title.substring(0, 60),
+            metaDescription: content.substring(0, 160),
+            keywords: ['jambo', 'linguists', 'swahili', 'translation', 'interpretation']
+        };
     }
 
     async generateSiteSeo(companyInfo: any): Promise<Partial<GlobalSeoSettings>> {
+        // Return mock data if AI is not enabled
+        if (!this.isEnabled || !this.ai) {
+            return {
+                siteTitle: 'Jambo Linguists | Professional Swahili Translation Services',
+                siteDescription: 'Expert Swahili interpretation and translation services in the UK. Professional, certified linguists for all your language needs.',
+                defaultKeywords: ['swahili translation', 'interpretation services', 'jambo linguists', 'uk translation', 'certified translators', 'swahili interpreters', 'professional translation', 'language services'],
+                structuredData: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "LocalBusiness",
+                    "name": "Jambo Linguists",
+                    "description": "Professional Swahili translation and interpretation services"
+                }, null, 2)
+            };
+        }
+
         const prompt = `
             Act as a technical SEO expert for "Jambo Linguists Limited".
             Using the company details below, generate a global SEO strategy JSON object.
@@ -81,10 +126,35 @@ export class AiWritingService {
         } catch (error) {
             console.error("AI Site SEO Generation Failed:", error);
         }
-        return {};
+        
+        // Fallback to mock data
+        return {
+            siteTitle: 'Jambo Linguists | Professional Swahili Translation Services',
+            siteDescription: 'Expert Swahili interpretation and translation services in the UK. Professional, certified linguists for all your language needs.',
+            defaultKeywords: ['swahili translation', 'interpretation services', 'jambo linguists', 'uk translation', 'certified translators', 'swahili interpreters', 'professional translation', 'language services'],
+            structuredData: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Jambo Linguists",
+                "description": "Professional Swahili translation and interpretation services"
+            }, null, 2)
+        };
     }
 
     async analyzeContent(content: string): Promise<ContentAnalysis> {
+        // Return mock data if AI is not enabled
+        if (!this.isEnabled || !this.ai) {
+            return {
+                score: 75,
+                readabilityLevel: 'Grade 10',
+                tone: 'Professional',
+                suggestions: [
+                    'AI analysis unavailable - using mock data',
+                    'Add an API key to enable AI-powered content analysis'
+                ]
+            };
+        }
+
         const prompt = `
             Analyze this blog post draft for "Jambo Linguists".
             Evaluate based on:
@@ -117,6 +187,11 @@ export class AiWritingService {
             console.error("AI Content Analysis Failed:", error);
         }
         
-        return { score: 0, readabilityLevel: 'Unknown', tone: 'Unknown', suggestions: ['AI Analysis Unavailable'] };
+        return { 
+            score: 0, 
+            readabilityLevel: 'Unknown', 
+            tone: 'Unknown', 
+            suggestions: ['AI Analysis Unavailable'] 
+        };
     }
 }

@@ -5,7 +5,7 @@
 
 
 import React, { useState, useMemo } from 'react';
-import { mockDb, User, CourseProgress } from '../../../data/mockDatabase';
+import { mockDb, User, CourseProgress } from '@/data/mockDatabase';
 import { ChevronLeft, Edit2, Users, CheckCircle, Clock, BarChart3, Search, PlayCircle, FileText, HelpCircle, LayoutTemplate, X, Calendar } from 'lucide-react';
 import { Button } from '../../ui/Button';
 import { StatCard } from '../../ui/StatCard';

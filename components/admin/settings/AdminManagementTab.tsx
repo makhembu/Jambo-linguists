@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { mockDb, User } from '../../../data/mockDatabase';
+import { mockDb, User } from '@/data/mockDatabase';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../ui/Table';
 import { Button } from '../../ui/Button';
 import { UserPlus, Trash2, ShieldCheck, Mail } from 'lucide-react';

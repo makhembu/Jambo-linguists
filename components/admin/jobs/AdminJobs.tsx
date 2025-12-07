@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Plus, Search } from 'lucide-react';
-import { mockDb, Job, JobStatus, Invoice } from '../../../data/mockDatabase';
+import { mockDb, Job, JobStatus, Invoice } from '@/data/mockDatabase';
 import { AdminJobModal } from './AdminJobModal';
 import { UserProfileModal } from '../users/UserProfileModal';
 import { Toast, ToastType } from '../../portal/dashboard/Toast';

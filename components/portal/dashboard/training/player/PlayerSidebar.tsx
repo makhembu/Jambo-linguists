@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckCircle, Circle, FileText, LayoutTemplate, HelpCircle, PlayCircle, Lock } from 'lucide-react';
-import { Lesson } from '../../../../../data/types';
+import { Lesson } from '@/data/types';
 
 interface PlayerSidebarProps {
   lessons: Lesson[];

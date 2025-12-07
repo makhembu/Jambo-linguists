@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { FileText, Eye, Download, Loader2 } from 'lucide-react';
-import { Invoice, User } from '../../../../../data/types';
+import { Invoice, User } from '@/data/types';
 import { generateInvoicePDF } from '../../../portal/dashboard/finance/pdfGenerator';
 
 export interface AdminInvoiceRowProps {

@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { ArrowRight, User, Mail, Phone, Lock, CheckCircle, FileText, AlertCircle, Loader2, Key, Eye, EyeOff } from 'lucide-react';
-import { mockDb } from '../../../data/mockDatabase';
-import { COMPANY_INFO } from '../../../data/constants';
+import { mockDb } from '@/data/mockDatabase';
+import { COMPANY_INFO } from '@/data/constants';
 
 interface AuthFormProps {
   onStartOnboarding?: () => void;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { PoundSterling, Briefcase, Star, Award } from 'lucide-react';
-import { UserStats } from '../../../../../data/types';
+import { UserStats } from '@/data/types';
 import { StatsCard } from '../overview/StatsCard';
 
 export const ProfileStats = ({ stats }: { stats: UserStats }) => {

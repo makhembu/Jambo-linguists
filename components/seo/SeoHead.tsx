@@ -1,8 +1,8 @@
-
+'use client'
 import React, { useEffect } from 'react';
-import { SeoConfig } from '../../data/types';
-import { COMPANY_INFO } from '../../data/constants';
-import { mockDb } from '../../data/mockDatabase';
+import { SeoConfig } from '@/data/types';
+import { COMPANY_INFO } from '@/data/constants';
+import { mockDb } from '@/data/mockDatabase';
 
 interface SeoHeadProps {
   seo?: SeoConfig;

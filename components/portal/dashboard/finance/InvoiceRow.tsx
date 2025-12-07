@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
 import { FileText, Eye, Download, Loader2 } from 'lucide-react';
-import { Invoice } from '../../../../data/types';
+import { Invoice } from '@/data/types';
 import { generateInvoicePDF } from './pdfGenerator';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { Card } from '../../../ui/Card';
 import { IconBox } from '../../../ui/IconBox';
 

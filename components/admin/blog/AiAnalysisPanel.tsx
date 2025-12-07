@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Sparkles, AlertCircle, CheckCircle, BrainCircuit } from 'lucide-react';
-import { ContentAnalysis } from '../../../data/services/AiWritingService';
+import { ContentAnalysis } from '@/data/services/AiWritingService';
 
 interface AiAnalysisPanelProps {
     analysis: ContentAnalysis | null;

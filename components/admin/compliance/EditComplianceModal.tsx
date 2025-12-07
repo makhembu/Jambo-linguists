@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
 import { Modal } from '../../ui/Modal';
-import { ComplianceDocument } from '../../../data/types';
+import { ComplianceDocument } from '@/data/types';
 import { Save, Loader2, X } from 'lucide-react';
 import { Button } from '../../ui/Button';
-import { mockDb } from '../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface EditComplianceModalProps {
     doc: ComplianceDocument;

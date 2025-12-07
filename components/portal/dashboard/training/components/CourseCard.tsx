@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { PlayCircle, Clock, BookOpen, CheckCircle } from 'lucide-react';
-import { EnrichedCourse } from '../../../../../data/types';
+import { EnrichedCourse } from '@/data/types';
 import { Card } from '../../../../ui/Card';
 
 export interface CourseCardProps {

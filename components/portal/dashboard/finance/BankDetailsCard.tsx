@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { CreditCard, Lock, Edit2 } from 'lucide-react';
-import { User } from '../../../../data/types';
+import { User } from '@/data/types';
 import { IconBox } from '../../../ui/IconBox';
 
 interface BankDetailsCardProps {

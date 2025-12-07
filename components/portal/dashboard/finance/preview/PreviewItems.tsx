@@ -1,5 +1,5 @@
 import React from 'react';
-import { Invoice } from '../../../../../data/types';
+import { Invoice } from '@/data/types';
 import { ArrowRightCircle } from 'lucide-react';
 
 export const PreviewItems = ({ items, onViewJob }: { items: Invoice['items'], onViewJob?: (jobId: string) => void }) => (

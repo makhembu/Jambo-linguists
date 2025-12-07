@@ -1,6 +1,6 @@
 
 import { jsPDF } from "jspdf";
-import { User } from "../../../../../data/types";
+import { User } from "@/data/types";
 import { COLORS, CONSTANTS } from "./PDFConfig";
 
 export interface HeaderMeta {

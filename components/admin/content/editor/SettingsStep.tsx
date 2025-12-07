@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Course } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { Course } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Switch } from '../../../ui/Switch';
 import { Settings, Lock, Bell, Award, BookOpen, GraduationCap } from 'lucide-react';
 import { Fieldset } from '../../jobs/add-job/Fieldset';

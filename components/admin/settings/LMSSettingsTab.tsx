@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { mockDb, SystemSettings } from '../../../data/mockDatabase';
+import { mockDb, SystemSettings } from '@/data/mockDatabase';
 import { Switch } from '../../ui/Switch';
 import { BookOpen, GraduationCap, Lock } from 'lucide-react';
 import { Card } from '../../ui/Card';

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Job, Invoice } from '../../../data/types';
-import { mockDb } from '../../../data/mockDatabase';
+import { Job, Invoice } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Modal } from '../../ui/Modal';
 import { InvoicePreviewModal } from '../../portal/dashboard/finance/InvoicePreviewModal';
 import { UserProfileModal } from '../users/UserProfileModal';

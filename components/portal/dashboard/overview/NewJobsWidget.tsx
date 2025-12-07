@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
-import { Job } from '../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 import { IconBox } from '../../../ui/IconBox';
 
 interface NewJobsWidgetProps {

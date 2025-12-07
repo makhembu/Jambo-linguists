@@ -3,8 +3,8 @@
 
 
 import React from 'react';
-import { Course } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { Course } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { ImageUploadField } from '../../users/add-user/ImageUploadField';
 import { Image as ImageIcon, Info, Lock } from 'lucide-react';
 import { Switch } from '../../../ui/Switch';

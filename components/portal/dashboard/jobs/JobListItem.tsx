@@ -4,7 +4,7 @@ import {
   MapPin, Video, Users, Phone, FileText, Mic, 
   ArrowRight, AlertCircle, Clock
 } from 'lucide-react';
-import { Job } from '../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 import { getInterpretingJobPayout } from './job-helpers';
 import { Card } from '../../../ui/Card';
 

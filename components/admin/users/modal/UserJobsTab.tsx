@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { mockDb, Job } from '../../../../../data/mockDatabase';
+import { mockDb, Job } from '@/data/mockDatabase';
 import { Clock, CheckCircle, XCircle, MapPin, Briefcase } from 'lucide-react';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../ui/Table';
 import { Badge } from '../../../ui/Badge';

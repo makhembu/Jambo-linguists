@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { CheckCircle, Clock } from 'lucide-react';
-import { Invoice } from '../../../../data/types';
+import { Invoice } from '@/data/types';
 
 interface PaymentBannerProps {
     existingInvoice: Invoice | undefined;

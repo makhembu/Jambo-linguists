@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { CheckCircle, Briefcase, Shield, GraduationCap } from 'lucide-react';
-import { Notification } from '../../../../data/mockDatabase';
+import { Notification } from '@/data/mockDatabase';
 import { Card } from '../../../ui/Card';
 
 export const RecentActivity = ({ notifications, onItemClick }: { notifications: Notification[], onItemClick: (link: string) => void }) => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Lock } from 'lucide-react';
 import { LinguistSelector } from './LinguistSelector';
-import { User } from '../../../../data/types';
+import { User } from '@/data/types';
 
 interface LinguistAssignmentProps {
   linguist: User | null | undefined;

@@ -1,7 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { Calendar, PoundSterling, Globe, Clock, FileText, MapPin, CheckCircle, Briefcase, AlertTriangle, Download, Loader2, UploadCloud } from 'lucide-react';
-import { Job } from '../../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 import { JobResources } from './JobResources';
 import { getInterpretingJobPayoutDetails } from '../job-helpers';
 

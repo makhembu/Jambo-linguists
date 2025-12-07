@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { CheckCircle, Camera } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 
 interface ProfileIdentityProps {
   user: User;

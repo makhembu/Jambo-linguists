@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Printer, Loader2, MoreVertical, Edit, FileText } from 'lucide-react';
-import { Job } from '../../../../data/types';
+import { Job } from '@/data/types';
 import { JobStatusBadge } from '../../../ui/JobStatusBadge';
 import { JobDetailsPDF } from '../pdf/JobDetailsPDF';
 

@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { User as UserType } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { User as UserType } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { X, Briefcase, Wallet, User, History } from 'lucide-react';
 
 // Sub-components

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Lesson, LessonType } from '../../../../data/types';
+import { Lesson, LessonType } from '@/data/types';
 import { Modal } from '../../../ui/Modal';
 import { Button } from '../../../ui/Button';
 import { PlayCircle, FileText, LayoutTemplate, HelpCircle, X, CheckCircle, Lock } from 'lucide-react';

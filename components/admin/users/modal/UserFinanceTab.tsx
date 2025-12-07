@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { mockDb } from '../../../../../data/mockDatabase';
-import { Invoice } from '../../../../../data/types';
+import { mockDb } from '@/data/mockDatabase';
+import { Invoice } from '@/data/types';
 import { PoundSterling, FileText, CheckCircle, Clock, AlertCircle, Download, Loader2 } from 'lucide-react';
 import { AdminInvoiceRow } from './AdminInvoiceRow';
 import { InvoicePreviewModal } from '../../../portal/dashboard/finance/InvoicePreviewModal';

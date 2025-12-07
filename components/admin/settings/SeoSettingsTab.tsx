@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo } from 'react';
-import { mockDb, SystemSettings } from '../../../data/mockDatabase';
-import { COMPANY_INFO } from '../../../data/constants';
+import { mockDb, SystemSettings } from '@/data/mockDatabase';
+import { COMPANY_INFO } from '@/data/constants';
 import { Card } from '../../ui/Card';
 import { Button } from '../../ui/Button';
 import { Sparkles, Globe, Search, Code, Loader2, Save, Smartphone, Monitor, Info, FileText, Download } from 'lucide-react';

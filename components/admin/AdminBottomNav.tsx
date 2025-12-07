@@ -1,18 +1,19 @@
-
+'use client';
 import React, { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, Briefcase, MessageSquare, Wallet, Menu, 
   Users, FileText, Shield, PenTool, Settings, LogOut, X 
 } from 'lucide-react';
-import { mockDb } from '../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface AdminBottomNavProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
-  onNavigate: (page: string) => void;
 }
 
-export const AdminBottomNav = ({ activeSection, setActiveSection, onNavigate }: AdminBottomNavProps) => {
+export const AdminBottomNav = ({ activeSection, setActiveSection }: AdminBottomNavProps) => {
+  const router = useRouter();
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -50,7 +51,7 @@ export const AdminBottomNav = ({ activeSection, setActiveSection, onNavigate }: 
 
   const handleLogout = () => {
       mockDb.auth.logout();
-      onNavigate('home');
+      router.push('/');
   };
 
   const mainItems = [

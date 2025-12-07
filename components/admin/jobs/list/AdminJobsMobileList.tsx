@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { Job } from '../../../../data/types';
+import { Job } from '@/data/types';
 import { Clock, MapPin, Briefcase, MoreVertical, ArrowRight, User } from 'lucide-react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface AdminJobsMobileListProps {
     jobs: Job[];

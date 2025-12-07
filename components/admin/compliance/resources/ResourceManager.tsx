@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Resource } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { Resource } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Plus, Edit2, Trash2, ExternalLink, FileText, Link, Download } from 'lucide-react';
 import { Card } from '../../../ui/Card';
 import { Badge } from '../../../ui/Badge';

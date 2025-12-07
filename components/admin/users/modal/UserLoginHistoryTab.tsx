@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { mockDb } from '../../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../ui/Table';
 
 export const UserLoginHistoryTab = ({ userId }: { userId: string }) => {

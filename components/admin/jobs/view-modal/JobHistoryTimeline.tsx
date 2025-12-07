@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { CheckCircle, AlertTriangle, FileText, UserPlus, FileUp, Download, XCircle, PlusCircle, RefreshCw } from 'lucide-react';
-import { JobHistoryEvent } from '../../../../data/types';
+import { JobHistoryEvent } from '@/data/types';
 
 interface JobHistoryTimelineProps {
     history: JobHistoryEvent[];

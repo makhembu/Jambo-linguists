@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { CourseList } from './CourseList';
 import { CourseEditor } from './CourseEditor';
 import { CourseAdminView } from './CourseAdminView'; // New Component
-import { mockDb } from '../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 export const AdminContent = () => {
   const [view, setView] = useState<'list' | 'editor' | 'details'>('list');

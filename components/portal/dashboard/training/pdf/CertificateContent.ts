@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { EnrichedCourse, User } from "../../../../../data/types";
+import { EnrichedCourse, User } from "@/data/types";
 import { COLORS, CONSTANTS, formatDateUK } from "./PDFConfig";
 
 export class CertificateContent {

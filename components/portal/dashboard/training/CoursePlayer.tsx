@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ChevronLeft, Menu } from 'lucide-react';
-import { EnrichedCourse, Lesson, mockDb } from '../../../../data/mockDatabase';
+import { EnrichedCourse, Lesson, mockDb } from '@/data/mockDatabase';
 import { PlayerSidebar } from './player/PlayerSidebar';
 import { LessonContent } from './player/LessonContent';
 import { CourseCertificate } from './player/CourseCertificate';

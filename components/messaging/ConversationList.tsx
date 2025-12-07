@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Conversation } from '../../data/types';
+import { Conversation } from '@/data/types';
 import { Briefcase, User } from 'lucide-react';
 
 interface ConversationListProps {

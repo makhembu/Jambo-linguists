@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Calendar, MapPin, Clock, ChevronRight, Briefcase, AlertTriangle } from 'lucide-react';
-import { Job } from '../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 import { IconBox } from '../../../ui/IconBox';
 
 // Helper function to get deadline status

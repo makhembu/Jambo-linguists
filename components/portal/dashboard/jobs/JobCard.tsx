@@ -1,7 +1,7 @@
-
+'use client';
 import React from 'react';
 import { MapPin, ArrowRight, Calendar, AlertCircle } from 'lucide-react';
-import { Job } from '../../../../data/mockDatabase';
+import { Job } from '@/data/mockDatabase';
 import { Card } from '../../../ui/Card';
 import { Badge } from '../../../ui/Badge';
 

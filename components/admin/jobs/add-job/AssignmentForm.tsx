@@ -1,7 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { User as UserIcon, Globe } from 'lucide-react';
-import { User } from '../../../../data/types';
+import { User } from '@/data/types';
 import { LinguistSelector } from '../modal/LinguistSelector';
 
 interface AssignmentFormProps {

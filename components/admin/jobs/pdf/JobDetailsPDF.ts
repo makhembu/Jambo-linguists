@@ -1,6 +1,6 @@
 
 import { jsPDF } from "jspdf";
-import { Job, mockDb } from "../../../../../data/mockDatabase";
+import { Job, mockDb } from "@/data/mockDatabase";
 import { CONSTANTS, COLORS, getCompanyLogo, formatDateUK, formatCurrency } from "../../../portal/dashboard/finance/pdf/PDFConfig";
 import { PDFHeader } from "../../../portal/dashboard/finance/pdf/PDFHeader";
 import { PDFFooter } from "../../../portal/dashboard/finance/pdf/PDFFooter";

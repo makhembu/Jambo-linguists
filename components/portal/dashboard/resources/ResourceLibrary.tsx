@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Book, FileText, Download, Search, Shield, Globe, File, ExternalLink } from 'lucide-react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { IconBox, IconBoxVariant } from '../../../ui/IconBox';
 import { Card } from '../../../ui/Card';
 

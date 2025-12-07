@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ShieldCheck, Edit, Clock, FileText, BookOpen, Shield } from 'lucide-react';
-import { mockDb, ComplianceDocument } from '../../../data/mockDatabase';
+import { mockDb, ComplianceDocument } from '@/data/mockDatabase';
 import { EditComplianceModal } from './EditComplianceModal';
 import { ResourceManager } from './resources/ResourceManager';
 import { Card } from '../../ui/Card';

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Mail, Phone, MapPin, Calendar, Clock } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 
 interface ContactDetailsProps {
   user: User;

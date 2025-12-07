@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Invoice } from '../../../../data/types';
+import { Invoice } from '@/data/types';
 import { InvoiceRow } from './InvoiceRow';
 import { Filter, Search } from 'lucide-react';
 import { Input } from '../../../ui/Input';

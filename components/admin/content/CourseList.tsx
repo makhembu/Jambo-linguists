@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { mockDb } from '../../../data/mockDatabase';
-import { Course } from '../../../data/types';
+import { mockDb } from '@/data/mockDatabase';
+import { Course } from '@/data/types';
 import { Plus, Trash2, BookOpen, Clock, Users, Eye } from 'lucide-react';
 import { Card } from '../../ui/Card';
 import { Button } from '../../ui/Button';

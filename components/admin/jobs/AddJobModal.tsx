@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { X, Plus, Loader2, Briefcase, Calendar, PoundSterling, User, FileText } from 'lucide-react';
-import { mockDb, Job } from '../../../data/mockDatabase';
+import { mockDb, Job } from '@/data/mockDatabase';
 import { calculateJobPayout } from '../../portal/dashboard/jobs/job-helpers';
 import { Fieldset } from './add-job/Fieldset';
 import { CoreDetailsForm } from './add-job/CoreDetailsForm';

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 
 interface IdentitySectionProps {
   user: User;

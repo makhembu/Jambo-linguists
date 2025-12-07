@@ -1,13 +1,8 @@
-
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Bell, CheckCircle, Briefcase, Shield, GraduationCap, X, Check, MessageSquare } from 'lucide-react';
-import { mockDb, Notification } from '../../data/mockDatabase';
+import { mockDb, Notification } from '@/data/mockDatabase';
 
-interface NotificationPanelProps {
-  onNavigate: (sectionId: string) => void;
-}
-
-export const NotificationPanel = ({ onNavigate }: NotificationPanelProps) => {
+export const NotificationPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -52,9 +47,7 @@ export const NotificationPanel = ({ onNavigate }: NotificationPanelProps) => {
   const handleNotificationClick = (notification: Notification) => {
     mockDb.markNotificationRead(notification.id);
     setIsOpen(false);
-    if (notification.linkTo) {
-      onNavigate(notification.linkTo);
-    }
+    // Removed navigation call
   };
 
   const handleMarkAllRead = () => {
@@ -76,19 +69,16 @@ export const NotificationPanel = ({ onNavigate }: NotificationPanelProps) => {
 
       {isOpen && (
         <>
-            {/* Mobile Backdrop (to close on click outside) */}
             <div 
                 className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
                 onClick={() => setIsOpen(false)}
             />
 
-            {/* Panel Container (Responsive: Full screen mobile / Dropdown desktop) */}
             <div className={`
                 fixed inset-x-0 top-0 bottom-0 z-50 bg-white dark:bg-[#1a1625] flex flex-col shadow-2xl
                 lg:absolute lg:inset-auto lg:top-full lg:right-0 lg:w-96 lg:h-auto lg:max-h-[600px] lg:rounded-2xl lg:mt-3 lg:border lg:border-gray-200 lg:dark:border-white/10
                 animate-in slide-in-from-top-4 duration-300 ease-out origin-top-right
             `}>
-                {/* Header */}
                 <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gray-100 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 backdrop-blur-sm shrink-0">
                     <div>
                         <h4 className="font-serif font-bold text-xl text-gray-900 dark:text-white">Notifications</h4>
@@ -115,7 +105,6 @@ export const NotificationPanel = ({ onNavigate }: NotificationPanelProps) => {
                     </div>
                 </div>
 
-                {/* List Content */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar bg-white dark:bg-[#1a1625]">
                     {notifications.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full py-12 text-center px-6">
@@ -167,7 +156,6 @@ export const NotificationPanel = ({ onNavigate }: NotificationPanelProps) => {
                     )}
                 </div>
                 
-                {/* Mobile Footer Area (Safe Area) */}
                 <div className="lg:hidden h-safe-bottom bg-white dark:bg-[#1a1625]"></div>
             </div>
         </>

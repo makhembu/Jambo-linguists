@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { FileText } from 'lucide-react';
-import { mockDb } from '../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface TermsDocumentProps {
   onScrollBottom: () => void;

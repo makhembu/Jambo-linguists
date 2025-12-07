@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Calendar, User, Star } from 'lucide-react';
-import { Job } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { Job } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { AdminJobModal } from '../jobs/AdminJobModal';
 import { UserProfileModal } from '../users/UserProfileModal';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../ui/Table';
@@ -162,13 +162,13 @@ export const ActionRequiredTable = ({ jobs, onReview }: { jobs: Job[], onReview?
     )}
 
     {selectedLinguistId && (
-        <UserProfileModal
-            user={mockDb.getAllUsers().find(u => u.id === selectedLinguistId)!}
-            onClose={() => setSelectedLinguistId(null)}
-            onUpdate={() => {}}
-            onNavigate={() => {}}
-        />
-    )}
+  <UserProfileModal
+    user={mockDb.getAllUsers().find(u => u.id === selectedLinguistId)!}
+    onClose={() => setSelectedLinguistId(null)}
+    onUpdate={() => {}}
+  />
+)}
+
     </>
   );
 };

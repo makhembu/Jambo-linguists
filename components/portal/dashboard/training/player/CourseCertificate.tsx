@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { Award, Download, ArrowLeft, Loader2 } from 'lucide-react';
-import { EnrichedCourse } from '../../../../../../data/types';
-import { mockDb } from '../../../../../../data/mockDatabase';
+import { EnrichedCourse } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { generateCertificatePDF } from '../pdf/CertificateGenerator';
 
 interface CourseCertificateProps {

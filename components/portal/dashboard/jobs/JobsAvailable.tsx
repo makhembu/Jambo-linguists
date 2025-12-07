@@ -4,7 +4,7 @@ import { JobCard } from './JobCard';
 import { JobListItem } from './JobListItem';
 import { JobDetailsModal } from './JobDetailsModal';
 import { Pagination } from './Pagination';
-import { mockDb, Job } from '../../../../data/mockDatabase';
+import { mockDb, Job } from '@/data/mockDatabase';
 import { ToastType } from '../Toast';
 
 const ITEMS_PER_PAGE = 6;

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { mockDb } from '../../../data/mockDatabase';
-import { Course, Lesson } from '../../../data/types';
+import { mockDb } from '@/data/mockDatabase';
+import { Course, Lesson } from '@/data/types';
 import { EditorSidebar } from './editor/EditorSidebar';
 import { BasicInfoStep } from './editor/BasicInfoStep';
 import { CurriculumStep } from './editor/CurriculumStep';

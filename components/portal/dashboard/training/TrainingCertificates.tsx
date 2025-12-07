@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { CertificateCard } from './components/CertificateCard';
 import { Award } from 'lucide-react';
 

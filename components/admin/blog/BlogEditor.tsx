@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
-import { BlogPost, SeoConfig } from '../../../data/types';
-import { mockDb } from '../../../data/mockDatabase';
+import { BlogPost, SeoConfig } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Save, X, Image as ImageIcon, Sparkles, PenTool, Search } from 'lucide-react';
 import { Button } from '../../ui/Button';
 import { Modal } from '../../ui/Modal';
 import { ImageUploadField } from '../users/add-user/ImageUploadField';
 import { SeoPanel } from './SeoPanel';
 import { AiAnalysisPanel } from './AiAnalysisPanel';
-import { ContentAnalysis } from '../../../data/services/AiWritingService';
+import { ContentAnalysis } from '@/data/services/AiWritingService';
 
 interface BlogEditorProps {
   post: BlogPost | null;

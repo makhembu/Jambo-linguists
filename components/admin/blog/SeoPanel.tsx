@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { SeoConfig } from '../../../data/types';
+import { SeoConfig } from '@/data/types';
 import { Globe, Search, Smartphone, Monitor } from 'lucide-react';
 
 interface SeoPanelProps {

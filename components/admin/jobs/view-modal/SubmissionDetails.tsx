@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { AlertCircle, Download, CheckCircle, FileText } from 'lucide-react';
-import { Job } from '../../../../data/types';
+import { Job } from '@/data/types';
 import { Button } from '../../../ui/Button';
 
 interface SubmissionDetailsProps {

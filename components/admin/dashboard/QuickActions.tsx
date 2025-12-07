@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Download, Users, FileCheck, Briefcase } from 'lucide-react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 
 interface QuickActionsProps {
   onNavigate?: (section: string, filter?: string) => void;

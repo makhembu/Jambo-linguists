@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Clock, MapPin, Calendar as CalendarIcon, Briefcase } from 'lucide-react';
-import { mockDb, Job } from '../../../../data/mockDatabase';
+import { mockDb, Job } from '@/data/mockDatabase';
 import { JobDetailsModal } from './JobDetailsModal';
 import { ToastType } from '../Toast';
 

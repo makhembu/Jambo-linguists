@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ActionRequiredTable } from './dashboard/ActionRequiredTable';
 import { LiveOperationsFeed } from './dashboard/LiveOperationsFeed';
@@ -8,17 +7,13 @@ import { OngoingJobsWidget } from './dashboard/OngoingJobsWidget';
 import { 
   AlertCircle, Briefcase, PoundSterling, Clock, CheckCircle, Users, ChevronDown, ChevronUp 
 } from 'lucide-react';
-import { mockDb } from '../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { PageHeader } from '../ui/PageHeader';
 import { StatCard } from '../ui/StatCard';
 import { Badge } from '../ui/Badge';
 import { Card } from '../ui/Card';
 
-interface AdminDashboardProps {
-  onNavigate?: (section: string, filter?: string) => void;
-}
-
-export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
+export const AdminDashboard = () => {
   const [isRegExpanded, setIsRegExpanded] = useState(true);
   const [dataVersion, setDataVersion] = useState(0);
 
@@ -36,19 +31,12 @@ export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
   const pendingJobs = allJobs.filter(j => j.status === 'Pending Approval');
   const activeJobs = allJobs.filter(j => j.status === 'In Progress' || j.status === 'Scheduled');
   const openJobs = allJobs.filter(j => j.status === 'Open');
-  
   const completedJobs = allJobs.filter(j => j.status === 'Completed');
   const totalPayoutCompleted = completedJobs.reduce((sum, job) => sum + (job.totalPayout || 0), 0);
 
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
   const today = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-
-  const handleNav = (filter: string) => {
-    if (onNavigate) {
-      onNavigate('jobs', filter);
-    }
-  };
 
   const Status = () => (
     <div>
@@ -72,7 +60,6 @@ export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
              subtext="Jobs awaiting approval"
              icon={AlertCircle}
              variant="danger"
-             onClick={() => handleNav('Pending Approval')}
           />
           <StatCard 
              title="Live Operations"
@@ -80,7 +67,6 @@ export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
              subtext="Jobs active/scheduled"
              icon={Clock}
              variant="info"
-             onClick={() => handleNav('Scheduled')}
           />
           <StatCard 
              title="Open Marketplace"
@@ -88,7 +74,6 @@ export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
              subtext="Unfilled assignments"
              icon={Briefcase}
              variant="orange"
-             onClick={() => handleNav('Open')}
           />
           <StatCard 
              title="Gross Payroll"
@@ -96,7 +81,6 @@ export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
              subtext="Total completed value"
              icon={PoundSterling}
              variant="success"
-             onClick={() => handleNav('Completed')}
           />
        </div>
 
@@ -110,14 +94,14 @@ export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
                    </h3>
                    <Badge variant="brand">{pendingJobs.length} Items Pending</Badge>
                 </div>
-                <ActionRequiredTable jobs={pendingJobs} onReview={() => handleNav('Pending Approval')} />
+                <ActionRequiredTable jobs={pendingJobs} />
              </Card>
 
-             <OngoingJobsWidget onNavigate={onNavigate} />
+             <OngoingJobsWidget />
           </div>
 
           <div className="lg:col-span-1 space-y-6 md:space-y-8">
-             <QuickActions onNavigate={onNavigate} />
+             <QuickActions />
 
              <Card className="overflow-hidden flex flex-col transition-all">
                 <div className="p-4 md:p-6 border-b border-gray-100 dark:border-white/5 flex justify-between items-center bg-gray-50/50 dark:bg-white/5 cursor-pointer" onClick={() => setIsRegExpanded(!isRegExpanded)}>
@@ -126,10 +110,7 @@ export const AdminDashboard = ({ onNavigate }: AdminDashboardProps) => {
                       Recent Registrations
                    </h3>
                    <div className="flex items-center gap-2">
-                       <button 
-                         onClick={(e) => { e.stopPropagation(); onNavigate && onNavigate('linguists'); }}
-                         className="text-xs font-bold text-blue-600 hover:underline px-2 py-1"
-                       >
+                       <button className="text-xs font-bold text-blue-600 hover:underline px-2 py-1">
                          View All
                        </button>
                        <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">

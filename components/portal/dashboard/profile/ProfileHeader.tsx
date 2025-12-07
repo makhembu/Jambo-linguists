@@ -1,7 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { Edit2, Save, Loader2, X } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 
 interface ProfileHeaderProps {
   user: User;

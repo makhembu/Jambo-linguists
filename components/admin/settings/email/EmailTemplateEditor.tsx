@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { mockDb, EmailTemplate } from '../../../../data/mockDatabase';
+import { mockDb, EmailTemplate } from '@/data/mockDatabase';
 import { Button } from '../../../ui/Button';
 import { Save, RefreshCw } from 'lucide-react';
 

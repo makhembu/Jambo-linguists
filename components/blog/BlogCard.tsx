@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Calendar, User } from 'lucide-react';
-import { BlogPost, User as UserType } from '../../data/types';
-import { mockDb } from '../../data/mockDatabase';
+import { BlogPost, User as UserType } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 

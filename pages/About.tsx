@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AboutHero } from '../components/about/AboutHero';
 import { FounderSection } from '../components/about/FounderSection';
@@ -6,7 +5,7 @@ import { CorporateOverviewSection } from '../components/about/CorporateOverviewS
 import { AboutSwahiliSection } from '../components/about/AboutSwahiliSection';
 import { SeoHead } from '../components/seo/SeoHead';
 
-export const AboutPage = () => {
+export default function AboutPage() {
   const schema = {
     "@type": "AboutPage",
     "name": "About Jambo Linguists",
@@ -38,4 +37,4 @@ export const AboutPage = () => {
       <AboutSwahiliSection />
     </>
   );
-};
+}

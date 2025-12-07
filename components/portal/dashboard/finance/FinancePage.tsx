@@ -1,13 +1,13 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { FinanceStats } from './FinanceStats';
 import { InvoiceList } from './InvoiceList';
 import { BankDetailsCard } from './BankDetailsCard';
 import { Download, Loader2 } from 'lucide-react';
 import { generateStatementPDF } from './pdfGenerator';
 import { InvoicePreviewModal } from './InvoicePreviewModal'; // Import new modal
-import { Invoice } from '../../../../data/types'; // Import Invoice type
+import { Invoice } from '@/data/types'; // Import Invoice type
 
 export const FinancePage = () => {
   const user = mockDb.auth.getCurrentUser();

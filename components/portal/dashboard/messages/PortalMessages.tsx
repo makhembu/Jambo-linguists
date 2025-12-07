@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { mockDb, Conversation } from '../../../../data/mockDatabase';
+import { mockDb, Conversation } from '@/data/mockDatabase';
 import { ConversationList } from '../../../messaging/ConversationList';
 import { MessageThread } from '../../../messaging/MessageThread';
 import { Search, Edit } from 'lucide-react';

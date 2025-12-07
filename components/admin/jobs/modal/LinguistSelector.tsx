@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { User as UserType } from '../../../../data/types';
+import { User as UserType } from '@/data/types';
 import { ChevronDown, Search, X } from 'lucide-react';
 
 export const LinguistSelector = ({ allLinguists, currentLinguist, onSelect, disabled }: { allLinguists: UserType[], currentLinguist: UserType | null | undefined, onSelect: (userId: string | null) => void, disabled?: boolean }) => {

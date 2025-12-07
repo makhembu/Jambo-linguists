@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { FileText, Mic, Video } from 'lucide-react';
-import { Job, mockDb } from '../../../../data/mockDatabase';
+import { Job, mockDb } from '@/data/mockDatabase';
 
 // Sub-components
 import { ModalHeader } from './modal/ModalHeader';

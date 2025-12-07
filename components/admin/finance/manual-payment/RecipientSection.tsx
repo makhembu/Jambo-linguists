@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 import { CustomSelect } from '../../jobs/modal/CustomSelect';
 
 interface RecipientSectionProps {

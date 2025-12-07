@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Mail, Phone, Ban, CheckCircle, RefreshCw, Eye } from 'lucide-react';
-import { User } from '../../../data/mockDatabase';
+import { User } from '@/data/mockDatabase';
 
 export interface UserCardProps {
   user: User;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Eye, Download, CheckCircle, FileText, Loader2 } from 'lucide-react';
-import { Invoice } from '../../../../data/types';
-import { mockDb } from '../../../../data/mockDatabase';
+import { Invoice } from '@/data/types';
+import { mockDb } from '@/data/mockDatabase';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../ui/Table';
 import { Badge } from '../../ui/Badge';
 import { generateInvoicePDF } from '../../portal/dashboard/finance/pdfGenerator';

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../../../ui/Modal';
-import { Resource } from '../../../../data/types';
+import { Resource } from '@/data/types';
 import { Button } from '../../../ui/Button';
 import { Save, Link, FileText, X } from 'lucide-react';
 

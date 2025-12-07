@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { mockDb, Message } from '../../data/mockDatabase';
+import { mockDb, Message } from '@/data/mockDatabase';
 import { MessageBubble } from './MessageBubble';
 import { Send, MessageSquare, X } from 'lucide-react';
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { JobCategory, JobType } from '../../../../data/types';
+import { JobCategory, JobType } from '@/data/types';
 import { LabeledInput } from './LabeledInput';
 import { CustomSelect } from '../modal/CustomSelect';
 

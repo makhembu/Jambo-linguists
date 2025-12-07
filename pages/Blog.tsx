@@ -1,30 +1,31 @@
+'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { BlogHeader } from '../components/blog/BlogHeader';
 import { BlogCard } from '../components/blog/BlogCard';
 import { BlogPostView } from '../components/blog/BlogPostView';
-import { mockDb, BlogPost } from '../data/mockDatabase';
-import { Search, Filter, Loader2 } from 'lucide-react';
+import { mockDb } from '@/data/mockDatabase';
+import { Search } from 'lucide-react';
 import { Input } from '../components/ui/Input';
 import { SeoHead } from '../components/seo/SeoHead';
 
 interface BlogPageProps {
   initialSlug?: string | null;
-  onNavigate?: (page: string) => void;
 }
 
-export const BlogPage = ({ initialSlug, onNavigate }: BlogPageProps) => {
+export const BlogPage = ({ initialSlug }: BlogPageProps) => {
+  const router = useRouter();
   const [currentSlug, setCurrentSlug] = useState<string | null>(initialSlug || null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   
-  // Reset scroll on navigation
   useEffect(() => {
       window.scrollTo(0, 0);
   }, [currentSlug]);
 
   const allPosts = mockDb.getAllBlogs();
-  
+
   const allTags = useMemo(() => {
       const tags = new Set<string>();
       allPosts.forEach(p => p.tags.forEach(t => tags.add(t)));
@@ -48,7 +49,7 @@ export const BlogPage = ({ initialSlug, onNavigate }: BlogPageProps) => {
             <BlogPostView 
                 post={post} 
                 onBack={() => setCurrentSlug(null)} 
-                onNavigate={setCurrentSlug} 
+                onNavigate={(slug) => setCurrentSlug(slug)} // internal navigation
             />
           );
       }
@@ -70,7 +71,6 @@ export const BlogPage = ({ initialSlug, onNavigate }: BlogPageProps) => {
     }
   };
 
-  // LISTING VIEW
   return (
     <>
       <SeoHead 
@@ -80,7 +80,7 @@ export const BlogPage = ({ initialSlug, onNavigate }: BlogPageProps) => {
         structuredData={listSchema}
       />
       <BlogHeader />
-      
+
       <main className="max-w-7xl mx-auto px-4 md:px-6 py-12">
           {/* Filters */}
           <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-6 mb-12">

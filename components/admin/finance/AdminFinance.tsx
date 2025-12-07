@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Search, Filter, Download, Plus, Loader2 } from 'lucide-react';
-import { mockDb, Invoice, Job } from '../../../data/mockDatabase';
+import { mockDb, Invoice, Job } from '@/data/mockDatabase';
 import { AdminFinanceStats } from './AdminFinanceStats';
 import { AdminInvoiceTable } from './AdminInvoiceTable';
 import { InvoicePreviewModal } from '../../portal/dashboard/finance/InvoicePreviewModal';

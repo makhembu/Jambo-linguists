@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lesson } from '../../../../../../data/types';
+import { Lesson } from '@/data/types';
 import { VideoViewer, DocumentViewer, QuizViewer } from './viewers';
 
 interface LessonContentProps {

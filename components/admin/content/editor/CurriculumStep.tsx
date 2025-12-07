@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Lesson } from '../../../../data/types';
+import { Lesson } from '@/data/types';
 import { 
   Plus, Trash2, Edit2, PlayCircle, FileText, HelpCircle, 
   LayoutTemplate, ChevronUp, ChevronDown, FolderPlus

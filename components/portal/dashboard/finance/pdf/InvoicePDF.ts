@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { Invoice, User, mockDb } from "../../../../../data/mockDatabase";
+import { Invoice, User, mockDb } from "@/data/mockDatabase";
 import { CONSTANTS, COLORS, formatCurrency, formatDateUK, getCompanyLogo } from "./PDFConfig";
 import { HeaderMeta, PDFHeader } from "./PDFHeader";
 import { PDFTable, PDFTableColumn } from "./PDFTable";

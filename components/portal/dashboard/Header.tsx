@@ -2,8 +2,8 @@
 import React from 'react';
 import { Search, Home, Globe, Briefcase, MessageSquare, HelpCircle } from 'lucide-react';
 import { ThemeToggle } from '../../Theme';
-import { mockDb } from '../../../data/mockDatabase';
-import { COMPANY_INFO } from '../../../data/constants';
+import { mockDb } from '@/data/mockDatabase';
+import { COMPANY_INFO } from '@/data/constants';
 import { NotificationPanel } from '../../ui/NotificationPanel';
 
 interface HeaderProps {

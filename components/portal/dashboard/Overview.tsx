@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { PoundSterling, Briefcase, Star } from 'lucide-react';
-import { mockDb } from '../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { OngoingJobsWidget } from './overview/OngoingJobsWidget';
 import { NewJobsWidget } from './overview/NewJobsWidget';
 import { RecentActivity } from './overview/RecentActivity';

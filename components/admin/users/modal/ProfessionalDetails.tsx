@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { User as UserIcon, Globe, Briefcase, GraduationCap, Award, ChevronDown } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 
 // Using a local CustomSelect component to avoid large-scale refactoring
 const CustomSelect: React.FC<{

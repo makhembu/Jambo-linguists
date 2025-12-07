@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Mail, Phone, MapPin, Calendar, Clock, Globe, GraduationCap, Award, Lock, CreditCard } from 'lucide-react';
-import { User } from '../../../../../data/types';
+import { User } from '@/data/types';
 import { StatusBanners } from '../../../admin/users/modal/StatusBanners';
 
 interface ProfileDetailsProps {

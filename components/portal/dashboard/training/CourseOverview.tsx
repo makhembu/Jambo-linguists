@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ChevronLeft, PlayCircle, Clock, BookOpen, CheckCircle, User, Award, Loader2, Lock, MessageSquare } from 'lucide-react';
-import { mockDb, Lesson } from '../../../../data/mockDatabase';
+import { mockDb, Lesson } from '@/data/mockDatabase';
 
 interface CourseOverviewProps {
   courseId: string;

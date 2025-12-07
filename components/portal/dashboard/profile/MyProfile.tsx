@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { User, Briefcase, Wallet, History, Settings, BookOpen, GraduationCap, ArrowRight, LogOut } from 'lucide-react';
-import { mockDb } from '../../../../data/mockDatabase';
+import { mockDb } from '@/data/mockDatabase';
 import { ProfileHeader } from './ProfileHeader';
 import { ProfileIdentity } from './ProfileIdentity';
 import { ProfileDetails } from './ProfileDetails';
