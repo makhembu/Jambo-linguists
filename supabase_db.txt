@@ -1,0 +1,431 @@
+
+-- =============================================================================
+-- JAMBO LINGUISTS - PREMIUM SUPABASE SCHEMA
+-- =============================================================================
+
+-- 1. EXTENSIONS
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- 2. ENUMS & TYPES
+CREATE TYPE user_role AS ENUM ('admin', 'linguist', 'client');
+CREATE TYPE job_status AS ENUM ('Open', 'Scheduled', 'In Progress', 'Completed', 'Cancelled', 'Pending Approval', 'Revision');
+CREATE TYPE job_category AS ENUM ('Interpreting', 'Translation', 'Transcription');
+CREATE TYPE job_type AS ENUM ('Face-to-Face', 'Video', 'Telephone', 'Document', 'Audio/Video');
+CREATE TYPE invoice_status AS ENUM ('Paid', 'Pending', 'Overdue', 'Draft');
+CREATE TYPE course_status AS ENUM ('Not Started', 'In Progress', 'Completed');
+CREATE TYPE lesson_type AS ENUM ('Video', 'Document', 'Slide', 'Quiz');
+
+-- =============================================================================
+-- 3. TABLES (Ordered for Foreign Key Integrity)
+-- =============================================================================
+
+-- 3.1 USERS
+CREATE TABLE public.users (
+    id TEXT PRIMARY KEY, -- Keeps TEXT to match frontend mock IDs (e.g., 'u-123456')
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT, 
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    role user_role DEFAULT 'linguist',
+    phone TEXT,
+    location TEXT,
+    headline TEXT,
+    avatar_url TEXT,
+    header_url TEXT,
+    is_verified BOOLEAN DEFAULT FALSE,
+    is_suspended BOOLEAN DEFAULT FALSE,
+    languages TEXT[], 
+    qualifications TEXT[],
+    bank_details JSONB DEFAULT '{}'::jsonb,
+    notification_preferences JSONB DEFAULT '{"emailUpdates": true, "jobAlerts": true, "courseReminders": true, "marketing": false}'::jsonb,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.2 COURSES (LMS)
+CREATE TABLE public.courses (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    category TEXT NOT NULL,
+    duration TEXT,
+    lessons_count INTEGER DEFAULT 0,
+    thumbnail_url TEXT,
+    instructor TEXT,
+    instructor_role TEXT,
+    status TEXT DEFAULT 'Draft',
+    allow_self_enrollment BOOLEAN DEFAULT TRUE,
+    learning_goals TEXT[],
+    settings JSONB DEFAULT '{}'::jsonb,
+    compliance JSONB DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.3 CERTIFICATES (Created before Progress to allow FK)
+CREATE TABLE public.certificates (
+    id TEXT PRIMARY KEY,
+    user_id TEXT REFERENCES public.users(id) ON DELETE CASCADE,
+    course_id TEXT REFERENCES public.courses(id) ON DELETE CASCADE,
+    issue_date TIMESTAMPTZ DEFAULT NOW(),
+    status TEXT DEFAULT 'Active',
+    verification_code TEXT UNIQUE NOT NULL,
+    template_id TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.4 COURSE PROGRESS (Links to Users, Courses, AND Certificates)
+CREATE TABLE public.course_progress (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id TEXT REFERENCES public.users(id) ON DELETE CASCADE,
+    course_id TEXT REFERENCES public.courses(id) ON DELETE CASCADE,
+    status course_status DEFAULT 'Not Started',
+    progress_percent INTEGER DEFAULT 0,
+    lessons_completed_ids TEXT[],
+    last_accessed_lesson_id TEXT,
+    last_accessed_at TIMESTAMPTZ,
+    enrollment_date TIMESTAMPTZ DEFAULT NOW(),
+    completed_at TIMESTAMPTZ,
+    certificate_id TEXT REFERENCES public.certificates(id) ON DELETE SET NULL, -- FK Added
+    history JSONB DEFAULT '[]'::jsonb,
+    UNIQUE(user_id, course_id)
+);
+
+-- 3.5 LESSONS
+CREATE TABLE public.lessons (
+    id TEXT PRIMARY KEY,
+    course_id TEXT REFERENCES public.courses(id) ON DELETE CASCADE,
+    module TEXT,
+    title TEXT NOT NULL,
+    type lesson_type NOT NULL,
+    duration TEXT,
+    order_index INTEGER NOT NULL,
+    content_url TEXT,
+    description TEXT,
+    transcript TEXT,
+    quiz_data JSONB DEFAULT '[]'::jsonb,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.6 JOBS
+CREATE TABLE public.jobs (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    category job_category NOT NULL,
+    type job_type NOT NULL,
+    status job_status DEFAULT 'Open',
+    date DATE NOT NULL,
+    time TEXT,
+    deadline_time TEXT,
+    duration TEXT,
+    location TEXT,
+    language_pair TEXT NOT NULL,
+    rate TEXT,
+    
+    -- Financials
+    hourly_rate NUMERIC(10, 2),
+    mileage_rate NUMERIC(10, 2),
+    travel_hours NUMERIC(4, 2),
+    travel_rate NUMERIC(10, 2),
+    word_count INTEGER,
+    word_rate NUMERIC(10, 4),
+    minute_rate NUMERIC(10, 2),
+    fixed_rate NUMERIC(10, 2),
+    total_payout NUMERIC(10, 2),
+    
+    is_urgent BOOLEAN DEFAULT FALSE,
+    distance NUMERIC(10, 1),
+    
+    -- Relations
+    linguist_id TEXT REFERENCES public.users(id),
+    client_id TEXT REFERENCES public.users(id),
+    posted_by TEXT REFERENCES public.users(id),
+    
+    required_course_ids TEXT[],
+    attachments JSONB DEFAULT '[]'::jsonb,
+    
+    -- Workflow
+    completion_notes TEXT,
+    completion_file TEXT,
+    completed_at TIMESTAMPTZ,
+    rating INTEGER,
+    revision_feedback TEXT,
+    revision_file TEXT,
+    revision_history JSONB DEFAULT '[]'::jsonb,
+    
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.7 JOB HISTORY
+CREATE TABLE public.job_history (
+    id TEXT PRIMARY KEY DEFAULT uuid_generate_v4()::text,
+    job_id TEXT REFERENCES public.jobs(id) ON DELETE CASCADE,
+    type TEXT NOT NULL,
+    date TIMESTAMPTZ DEFAULT NOW(),
+    actor_name TEXT,
+    description TEXT,
+    attachment TEXT
+);
+
+-- 3.8 INVOICES
+CREATE TABLE public.invoices (
+    id TEXT PRIMARY KEY,
+    user_id TEXT REFERENCES public.users(id),
+    reference TEXT UNIQUE NOT NULL,
+    date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    amount NUMERIC(10, 2) NOT NULL,
+    subtotal NUMERIC(10, 2),
+    vat_rate NUMERIC(5, 2),
+    status invoice_status DEFAULT 'Draft',
+    items JSONB DEFAULT '[]'::jsonb,
+    custom_recipient JSONB,
+    notes TEXT,
+    download_url TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.9 CONTENT TABLES (Resources, Blog, Compliance)
+CREATE TABLE public.resources (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    category TEXT,
+    type TEXT,
+    url TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+CREATE TABLE public.compliance_docs (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    type TEXT UNIQUE NOT NULL,
+    content TEXT NOT NULL,
+    last_updated TIMESTAMPTZ DEFAULT NOW(),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+CREATE TABLE public.blog_posts (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    slug TEXT UNIQUE NOT NULL,
+    excerpt TEXT,
+    content TEXT,
+    cover_image TEXT,
+    author_id TEXT REFERENCES public.users(id),
+    status TEXT DEFAULT 'draft',
+    published_at TIMESTAMPTZ,
+    tags TEXT[],
+    seo JSONB DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.10 MESSAGING
+CREATE TABLE public.messages (
+    id TEXT PRIMARY KEY,
+    sender_id TEXT REFERENCES public.users(id),
+    recipient_id TEXT REFERENCES public.users(id),
+    job_id TEXT REFERENCES public.jobs(id),
+    content TEXT NOT NULL,
+    is_read BOOLEAN DEFAULT FALSE,
+    read_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ
+);
+
+-- 3.11 SYSTEM & CONFIG
+CREATE TABLE public.system_settings (
+    id INTEGER PRIMARY KEY DEFAULT 1,
+    settings JSONB NOT NULL
+);
+
+CREATE TABLE public.email_templates (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    body TEXT NOT NULL,
+    variables TEXT[]
+);
+
+CREATE TABLE public.email_logs (
+    id TEXT PRIMARY KEY,
+    recipient_email TEXT NOT NULL,
+    template_id TEXT,
+    subject TEXT,
+    status TEXT,
+    sent_at TIMESTAMPTZ DEFAULT NOW(),
+    error TEXT
+);
+
+-- =============================================================================
+-- 4. INDEXES
+-- =============================================================================
+CREATE INDEX idx_users_email ON public.users(email);
+CREATE INDEX idx_jobs_linguist ON public.jobs(linguist_id);
+CREATE INDEX idx_jobs_status ON public.jobs(status);
+CREATE INDEX idx_blog_slug ON public.blog_posts(slug);
+CREATE INDEX idx_certificates_user ON public.certificates(user_id);
+
+-- =============================================================================
+-- 5. ROW LEVEL SECURITY (RLS) - "Premium Security"
+-- =============================================================================
+
+-- Enable RLS on ALL Tables
+ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.jobs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.job_history ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.invoices ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.courses ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.lessons ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.course_progress ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.certificates ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.resources ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.compliance_docs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.blog_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.system_settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.email_templates ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.email_logs ENABLE ROW LEVEL SECURITY;
+
+-- --- POLICIES ---
+
+-- Users
+CREATE POLICY "Users view own profile" ON public.users FOR SELECT USING (auth.uid()::text = id);
+CREATE POLICY "Admins view all users" ON public.users FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- Jobs
+CREATE POLICY "Linguists view assigned/open jobs" ON public.jobs FOR SELECT USING ((status = 'Open') OR (linguist_id = auth.uid()::text) OR (posted_by = auth.uid()::text));
+CREATE POLICY "Admins manage all jobs" ON public.jobs FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- Job History
+CREATE POLICY "Users view history of their jobs" ON public.job_history FOR SELECT USING (EXISTS (SELECT 1 FROM public.jobs WHERE id = job_history.job_id AND (linguist_id = auth.uid()::text OR posted_by = auth.uid()::text)));
+CREATE POLICY "Admins manage history" ON public.job_history FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- Invoices
+CREATE POLICY "Users view own invoices" ON public.invoices FOR SELECT USING (user_id = auth.uid()::text);
+CREATE POLICY "Admins manage invoices" ON public.invoices FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- Courses & Lessons
+CREATE POLICY "Public view published courses" ON public.courses FOR SELECT USING (status = 'Published' OR EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+CREATE POLICY "Public view lessons of published" ON public.lessons FOR SELECT USING (EXISTS (SELECT 1 FROM public.courses WHERE id = lessons.course_id AND status = 'Published') OR EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+CREATE POLICY "Admins manage courses" ON public.courses FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- Progress
+CREATE POLICY "Users view own progress" ON public.course_progress FOR ALL USING (user_id = auth.uid()::text OR EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- Certificates
+CREATE POLICY "Users view own certificates" ON public.certificates FOR SELECT USING (user_id = auth.uid()::text OR EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+CREATE POLICY "Public verification" ON public.certificates FOR SELECT USING (true); -- Allow verifying by code (simplified)
+
+-- Resources/Blog/Compliance
+CREATE POLICY "Public read resources" ON public.resources FOR SELECT USING (true);
+CREATE POLICY "Public read blog" ON public.blog_posts FOR SELECT USING (status = 'published' OR EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+CREATE POLICY "Public read docs" ON public.compliance_docs FOR SELECT USING (true);
+CREATE POLICY "Admins manage content" ON public.resources FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- Admin Only Tables
+CREATE POLICY "Admins only settings" ON public.system_settings FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+CREATE POLICY "Admins only emails" ON public.email_templates FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+CREATE POLICY "Admins only logs" ON public.email_logs FOR ALL USING (EXISTS (SELECT 1 FROM public.users WHERE id = auth.uid()::text AND role = 'admin'));
+
+-- =============================================================================
+-- 6. AUDIT TRIGGERS
+-- =============================================================================
+
+-- 6.1 Auto-update Timestamp
+CREATE OR REPLACE FUNCTION update_updated_at_column() RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- 6.2 Job Status Audit
+CREATE OR REPLACE FUNCTION log_job_status_change() RETURNS TRIGGER AS $$
+BEGIN
+    IF (OLD.status IS DISTINCT FROM NEW.status) THEN
+        INSERT INTO public.job_history (job_id, type, actor_name, description)
+        VALUES (NEW.id, 'STATUS_CHANGE', 'System Trigger', 'Status changed from ' || OLD.status || ' to ' || NEW.status);
+    END IF;
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- 6.3 Invoice Audit
+CREATE OR REPLACE FUNCTION log_invoice_payment() RETURNS TRIGGER AS $$
+BEGIN
+    IF (NEW.status = 'Paid' AND OLD.status != 'Paid') THEN
+        -- Logic to find related job and log payment there could go here
+        -- For now, just logging the invoice event isn't stored in a central log table in this schema, 
+        -- but this trigger serves as the placeholder for that logic.
+    END IF;
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- Apply Triggers
+CREATE TRIGGER update_users_modtime BEFORE UPDATE ON public.users FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
+CREATE TRIGGER update_jobs_modtime BEFORE UPDATE ON public.jobs FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
+CREATE TRIGGER update_invoices_modtime BEFORE UPDATE ON public.invoices FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
+CREATE TRIGGER update_courses_modtime BEFORE UPDATE ON public.courses FOR EACH ROW EXECUTE PROCEDURE update_updated_at_column();
+
+CREATE TRIGGER audit_job_status AFTER UPDATE ON public.jobs FOR EACH ROW EXECUTE PROCEDURE log_job_status_change();
+
+-- =============================================================================
+-- 7. SEED DATA
+-- =============================================================================
+
+-- 7.1 USERS
+INSERT INTO public.users (id, email, password_hash, first_name, last_name, role, phone, location, headline, is_verified, languages, qualifications) VALUES
+('u-123456', 'linah@jambolinguists.com', 'password', 'Linah', 'Makembu', 'linguist', '+44 7938 065 717', 'Leeds, UK', 'Professional Swahili Interpreter', TRUE, ARRAY['English', 'Swahili'], ARRAY['DPSI', 'CIOL Member']),
+('u-admin-001', 'admin@jambolinguists.com', 'admin', 'Jambo', 'Admin', 'admin', NULL, 'HQ, Pudsey', 'System Administrator', TRUE, ARRAY[], ARRAY[]),
+('u-client-001', 'contact@nhs.uk', 'password', 'NHS', 'Trust', 'client', NULL, 'Leeds Teaching Hospitals', 'Booking Coordinator', TRUE, ARRAY[], ARRAY[]);
+
+-- 7.2 EMAIL TEMPLATES (From Frontend Code)
+INSERT INTO public.email_templates (id, name, subject, body, variables) VALUES
+('JOB_ASSIGNED', 'Job Assigned', 'New Assignment: {{jobTitle}}', 'Dear {{firstName}},\n\nYou have been assigned a new job:\n\nTitle: {{jobTitle}}\nDate: {{date}}\nLocation: {{location}}\n\nPlease log in to the portal to view details.', ARRAY['firstName', 'jobTitle', 'date', 'location']),
+('JOB_APPROVED', 'Job Approved', 'Work Approved: {{jobTitle}}', 'Dear {{firstName}},\n\nYour submission for "{{jobTitle}}" has been approved. An invoice has been generated automatically.', ARRAY['firstName', 'jobTitle']),
+('INVOICE_PAID', 'Invoice Paid', 'Payment Confirmation: {{invoiceRef}}', 'Dear {{firstName}},\n\nPayment for Invoice #{{invoiceRef}} has been processed.\n\nAmount: £{{amount}}', ARRAY['firstName', 'invoiceRef', 'amount']),
+('CERTIFICATE_ISSUED', 'Certificate Issued', 'Certificate Issued: {{courseTitle}}', 'Dear {{firstName}},\n\nA new certificate for "{{courseTitle}}" has been issued to your profile.', ARRAY['firstName', 'courseTitle']);
+
+-- 7.3 SYSTEM SETTINGS
+INSERT INTO public.system_settings (id, settings) VALUES
+(1, '{
+    "registrationsOpen": true,
+    "marketplaceEnabled": true,
+    "autoInvoiceGeneration": true,
+    "defaultVatRate": 20,
+    "seo": {
+        "siteTitle": "Jambo Linguists",
+        "defaultKeywords": ["Swahili", "Interpreting"]
+    },
+    "email": {
+        "enabled": true,
+        "fromName": "Jambo Linguists"
+    }
+}'::jsonb);
+
+-- 7.4 CONTENT (Docs)
+INSERT INTO public.compliance_docs (id, title, type, content, last_updated) VALUES
+('doc-conduct', 'Code of Conduct', 'conduct', '<h4>Professionalism</h4><p>Freelancers must maintain high standards...</p>', NOW()),
+('doc-privacy', 'Privacy Policy', 'privacy', '<h4>Data Collection</h4><p>We collect data for assignments...</p>', NOW());
+
+-- End of Schema
